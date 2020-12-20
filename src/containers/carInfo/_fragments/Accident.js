@@ -3,15 +3,23 @@ import Button from "../../../components/button/Button";
 import styled, { css } from "styled-components";
 
 const Accident = () => {
-  const [isAccident, setIsAccident] = useState(false);
+  const [isAccident, setIsAccident] = useState();
 
   return (
     <AccidentContainer>
       <AccidentTitle>사고이력</AccidentTitle>
-      <IsAccidentBtn round onClick={() => setIsAccident(true)}>
+      <IsAccidentBtn
+        round
+        color={isAccident === "isAccident" ? "#315676" : null}
+        onClick={() => setIsAccident("isAccident")}
+      >
         사고이력 있음
       </IsAccidentBtn>
-      <IsNotAccidentBtn round onClick={() => setIsAccident(false)}>
+      <IsNotAccidentBtn
+        round
+        color={isAccident === "isNotAccident" ? "#315676" : null}
+        onClick={() => setIsAccident("isNotAccident")}
+      >
         사고이력 없음
       </IsNotAccidentBtn>
     </AccidentContainer>
