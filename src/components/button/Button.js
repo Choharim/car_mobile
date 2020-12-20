@@ -16,6 +16,8 @@ const Button = styled.button`
   border: 1px solid #315676;
   color: #315676;
   background-color: transparent;
+  font-weight: 700;
+  font-size: 0.9rem;
 
   ${(props) =>
     props.round &&
