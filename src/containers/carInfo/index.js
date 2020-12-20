@@ -3,6 +3,7 @@ import Accident from "./_fragments/Accident";
 import styled from "styled-components";
 import Button from "../../components/button/Button";
 import Repair from "./_fragments/Repair";
+import Manufacturer from "./_fragments/Manufacturer";
 
 const CarInfoContainer = () => {
   const [save, setSave] = useState(false);
@@ -16,6 +17,7 @@ const CarInfoContainer = () => {
       <InfoTitle>중고차</InfoTitle>
       <Accident />
       <Repair />
+      <Manufacturer />
       <SaveButton color="#315676" onClick={saveInfo}>
         판매 등록하기
       </SaveButton>

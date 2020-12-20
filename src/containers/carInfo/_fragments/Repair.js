@@ -17,6 +17,7 @@ const Repair = () => {
         value={repairInfo}
         onChange={saveRepairInfo}
         wrap="hard"
+        placeholder="ex) 범퍼교환"
       ></RepairInput>
     </RepairContainer>
   );
