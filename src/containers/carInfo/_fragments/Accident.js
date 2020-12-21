@@ -6,34 +6,42 @@ const Accident = () => {
   const [isAccident, setIsAccident] = useState();
 
   return (
-    <AccidentContainer>
-      <AccidentTitle>사고이력</AccidentTitle>
-      <IsAccidentBtn
-        round
-        color={isAccident === "isAccident"}
-        onClick={() => setIsAccident("isAccident")}
-      >
-        사고이력 있음
-      </IsAccidentBtn>
-      <IsNotAccidentBtn
-        round
-        color={isAccident === "isNotAccident"}
-        onClick={() => setIsAccident("isNotAccident")}
-      >
-        사고이력 없음
-      </IsNotAccidentBtn>
-    </AccidentContainer>
+    <>
+      <AccidentTextContainer>
+        <AccidentTitle>사고이력</AccidentTitle>
+      </AccidentTextContainer>
+      <AccidentContainer>
+        <IsAccidentBtn
+          round
+          color={isAccident === "isAccident"}
+          onClick={() => setIsAccident("isAccident")}
+        >
+          사고이력 있음
+        </IsAccidentBtn>
+        <IsNotAccidentBtn
+          round
+          color={isAccident === "isNotAccident"}
+          onClick={() => setIsAccident("isNotAccident")}
+        >
+          사고이력 없음
+        </IsNotAccidentBtn>
+      </AccidentContainer>
+    </>
   );
 };
 
 export default Accident;
 
+const AccidentTextContainer = styled.div`
+  width: 95%;
+  display: flex;
+  justify-content: flex-start;
+`;
+
 const AccidentContainer = styled.div`
   width: 95%;
-  height: 70px;
+  margin-top: 10px;
   display: flex;
-  align-items: flex-end;
-  position: relative;
 `;
 
 const AccidentTitle = styled.p`
@@ -41,9 +49,6 @@ const AccidentTitle = styled.p`
   font-weight: 700;
   font-size: 0.95rem;
   color: #50504f;
-  position: absolute;
-  top: 0;
-  left: 0;
 `;
 
 const IsAccidentBtn = styled(Button)`

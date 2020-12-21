@@ -16,17 +16,10 @@ const Manufacturer = () => {
   };
 
   return (
-    <ManufacturerContainer>
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
+    <>
+      <ManufacturerTextContainer>
         <ManufacturerTitle>제조사</ManufacturerTitle>
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", alignItems: "center" }}>
           <CheckBoxLabel>외제차의 경우 체크하세요</CheckBoxLabel>
           <CarCheckBox
             type="checkbox"
@@ -35,50 +28,59 @@ const Manufacturer = () => {
             checked={manufacturer !== "foreign" ? false : true}
           />
         </div>
-      </div>
-      <CarBtn
-        name="hyundai"
-        onClick={saveManufac}
-        color={manufacturer === "hyundai"}
-      >
-        현대
-      </CarBtn>
-      <CenterCarBtn
-        name="samsung"
-        onClick={saveManufac}
-        color={manufacturer === "samsung"}
-      >
-        르노 삼성
-      </CenterCarBtn>
-      <CarBtn name="kia" onClick={saveManufac} color={manufacturer === "kia"}>
-        기아
-      </CarBtn>
-      <CarBtn
-        name="ssangyong"
-        onClick={saveManufac}
-        color={manufacturer === "ssangyong"}
-      >
-        쌍용
-      </CarBtn>
-      <CenterCarBtn
-        name="daewoo"
-        onClick={saveManufac}
-        color={manufacturer === "daewoo"}
-      >
-        GM 대우
-      </CenterCarBtn>
-      <CarBtn name="etc" onClick={saveManufac} color={manufacturer === "etc"}>
-        기타
-      </CarBtn>
-    </ManufacturerContainer>
+      </ManufacturerTextContainer>
+      <ManufacturerContainer>
+        <CarBtn
+          name="hyundai"
+          onClick={saveManufac}
+          color={manufacturer === "hyundai"}
+        >
+          현대
+        </CarBtn>
+        <CenterCarBtn
+          name="samsung"
+          onClick={saveManufac}
+          color={manufacturer === "samsung"}
+        >
+          르노 삼성
+        </CenterCarBtn>
+        <CarBtn name="kia" onClick={saveManufac} color={manufacturer === "kia"}>
+          기아
+        </CarBtn>
+        <CarBtn
+          name="ssangyong"
+          onClick={saveManufac}
+          color={manufacturer === "ssangyong"}
+        >
+          쌍용
+        </CarBtn>
+        <CenterCarBtn
+          name="daewoo"
+          onClick={saveManufac}
+          color={manufacturer === "daewoo"}
+        >
+          GM 대우
+        </CenterCarBtn>
+        <CarBtn name="etc" onClick={saveManufac} color={manufacturer === "etc"}>
+          기타
+        </CarBtn>
+      </ManufacturerContainer>
+    </>
   );
 };
 
 export default Manufacturer;
 
+const ManufacturerTextContainer = styled.div`
+  width: 95%;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const ManufacturerContainer = styled.div`
   width: 95%;
-  height: 150px;
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -104,13 +106,13 @@ const CheckBoxLabel = styled.p`
 
 const CarBtn = styled(Button)`
   width: 31.5%;
-  height: 30%;
+  height: 40px;
   border-radius: 5px;
 `;
 
 const CenterCarBtn = styled(Button)`
   width: 33%;
-  height: 30%;
+  height: 40px;
   margin: 0 10px 10px;
   border-radius: 5px;
 `;
