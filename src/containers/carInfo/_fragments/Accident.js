@@ -10,14 +10,14 @@ const Accident = () => {
       <AccidentTitle>사고이력</AccidentTitle>
       <IsAccidentBtn
         round
-        color={isAccident === "isAccident" ? "#315676" : null}
+        color={isAccident === "isAccident"}
         onClick={() => setIsAccident("isAccident")}
       >
         사고이력 있음
       </IsAccidentBtn>
       <IsNotAccidentBtn
         round
-        color={isAccident === "isNotAccident" ? "#315676" : null}
+        color={isAccident === "isNotAccident"}
         onClick={() => setIsAccident("isNotAccident")}
       >
         사고이력 없음

@@ -27,7 +27,7 @@ const Button = styled.button`
   ${(props) =>
     props.color &&
     css`
-      background-color: ${props.color};
+      background-color: #315676;
       color: white;
     `}
 `;
