@@ -14,7 +14,6 @@ const CarPicture = () => {
       setFileObj({ file, url: reader.result });
     };
     reader.readAsDataURL(file);
-    console.log(event.target.files);
   };
 
   return (
@@ -33,7 +32,7 @@ const CarPicture = () => {
           accept="image/jpg,impge/png,image/jpeg,image/gif"
           onChange={uploadFiles}
         />
-        <UpLoadLabel for="file">
+        <UpLoadLabel htmlFor="file">
           <AiOutlinePlus style={{ fontSize: "2rem" }} />
         </UpLoadLabel>
         {fileObj.file && <PicturePreview src={fileObj.url} />}
@@ -55,6 +54,7 @@ const CarPictureContainer = styled.div`
   width: 95%;
   margin-top: 10px;
   display: flex;
+  flex-wrap: nowrap;
 `;
 
 const CarPictureTitle = styled.p`
