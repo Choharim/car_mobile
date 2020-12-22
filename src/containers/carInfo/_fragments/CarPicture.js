@@ -61,6 +61,7 @@ const CarPictureContainer = styled.div`
   margin-top: 10px;
   display: flex;
   flex-wrap: nowrap;
+  overflow-x: auto;
 `;
 
 const CarPictureTitle = styled.p`
@@ -92,6 +93,7 @@ const UpLoadLabel = styled.label`
   background-color: powderblue;
   border-radius: 10px;
   cursor: pointer;
+  flex: 0 0 auto;
 `;
 
 const PicturePreview = styled.img`
@@ -99,4 +101,7 @@ const PicturePreview = styled.img`
   height: 125px;
   border-radius: 10px;
   margin: 0 5px;
+  flex: 0 0 auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
 `;
