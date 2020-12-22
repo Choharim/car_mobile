@@ -4,17 +4,18 @@ import { AiOutlinePlus } from "react-icons/ai";
 
 const CarPicture = () => {
   const [count, setCount] = useState(0);
-  const [fileObj, setFileObj] = useState({ file: "", url: "" });
+  const [filesArray, setFilesArray] = useState([]);
 
   const uploadFiles = (event) => {
     event.preventDefault();
     const reader = new FileReader();
     const file = event.target.files[0];
     reader.onloadend = () => {
-      setFileObj({ file, url: reader.result });
+      setFilesArray(filesArray.concat([{ file, url: reader.result }]));
     };
     reader.readAsDataURL(file);
   };
+  console.log(filesArray);
 
   return (
     <>
@@ -35,7 +36,9 @@ const CarPicture = () => {
         <UpLoadLabel htmlFor="file">
           <AiOutlinePlus style={{ fontSize: "2rem" }} />
         </UpLoadLabel>
-        {fileObj.file && <PicturePreview src={fileObj.url} />}
+        {filesArray.map((fileObj, index) => (
+          <PicturePreview key={index} src={fileObj.url} />
+        ))}
       </CarPictureContainer>
     </>
   );
