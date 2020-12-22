@@ -4,6 +4,13 @@ import styled, { css } from "styled-components";
 
 const Accident = () => {
   const [isAccident, setIsAccident] = useState();
+  const saveAccidentInfo = (event) => {
+    const {
+      target: { name },
+    } = event;
+
+    setIsAccident(name);
+  };
 
   return (
     <>
@@ -13,15 +20,17 @@ const Accident = () => {
       <AccidentContainer>
         <IsAccidentBtn
           round
+          name="isAccident"
           color={isAccident === "isAccident"}
-          onClick={() => setIsAccident("isAccident")}
+          onClick={saveAccidentInfo}
         >
           사고이력 있음
         </IsAccidentBtn>
         <IsNotAccidentBtn
           round
+          name="isNotAccident"
           color={isAccident === "isNotAccident"}
-          onClick={() => setIsAccident("isNotAccident")}
+          onClick={saveAccidentInfo}
         >
           사고이력 없음
         </IsNotAccidentBtn>

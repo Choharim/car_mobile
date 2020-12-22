@@ -105,7 +105,7 @@ const CheckBoxLabel = styled.p`
 `;
 
 const CarBtn = styled(Button)`
-  width: 31.5%;
+  width: 33%;
   height: 40px;
   border-radius: 5px;
 `;
@@ -113,6 +113,6 @@ const CarBtn = styled(Button)`
 const CenterCarBtn = styled(Button)`
   width: 33%;
   height: 40px;
-  margin: 0 10px 10px;
+  // margin: 0 10px 10px;
   border-radius: 5px;
 `;

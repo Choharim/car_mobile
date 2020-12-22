@@ -16,7 +16,6 @@ const CarPicture = () => {
     reader.readAsDataURL(file);
     setCount(count + 1);
   };
-  console.log(count, filesArray);
 
   return (
     <>
@@ -51,6 +50,7 @@ export default CarPicture;
 
 const CarPictureTextContainer = styled.div`
   width: 95%;
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
