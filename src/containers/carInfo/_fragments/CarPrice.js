@@ -63,4 +63,7 @@ const CarPriceInput = styled.input`
   height: 25px;
   padding-bottom: 5px;
   text-align: right;
+  color: #979797;
+  font-weight: 600;
+  font-size: 1rem;
 `;
