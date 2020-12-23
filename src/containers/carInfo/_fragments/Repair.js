@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const Repair = () => {
-  const [repairInfo, setRepairInfo] = useState("");
-
+const Repair = ({ repairInfo, setRepairInfo }) => {
   const saveRepairInfo = (event) => {
     const {
       target: { value },

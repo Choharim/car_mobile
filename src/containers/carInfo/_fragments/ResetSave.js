@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Button from "../../../components/button/Button";
 
-const ResetSave = () => {
-  const [state, setState] = useState();
-  const [saveTime, setSaveTime] = useState();
+const ResetSave = ({ state, setState, saveTime, setSaveTime }) => {
   const saveState = (event) => {
     const {
       target: { name },

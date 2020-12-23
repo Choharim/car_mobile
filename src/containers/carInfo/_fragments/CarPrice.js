@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const CarPrice = () => {
-  const [price, setPrice] = useState("");
-
+const CarPrice = ({ price, setPrice }) => {
   const savePrice = (event) => {
     const {
       target: { value },

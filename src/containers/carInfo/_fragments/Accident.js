@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Button from "../../../components/button/Button";
 import styled from "styled-components";
 
-const Accident = () => {
-  const [isAccident, setIsAccident] = useState();
+const Accident = ({ isAccident, setIsAccident }) => {
   const saveAccidentInfo = (event) => {
     const {
       target: { name },

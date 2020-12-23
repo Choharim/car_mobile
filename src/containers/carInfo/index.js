@@ -14,6 +14,14 @@ const CarInfoContainer = () => {
   const [storage, setStorage] = useState(false);
   const [totalCount, setTotalCount] = useState(1);
   const [showCar, setShowCar] = useState(-1);
+  const [isAccident, setIsAccident] = useState();
+  const [repairInfo, setRepairInfo] = useState("");
+  const [manufacturer, setManufacturer] = useState();
+  const [filesArray, setFilesArray] = useState([]);
+  const [count, setCount] = useState(0);
+  const [price, setPrice] = useState("");
+  const [state, setState] = useState();
+  const [saveTime, setSaveTime] = useState();
 
   const showCarNumber = (event) => {
     const {
@@ -27,7 +35,7 @@ const CarInfoContainer = () => {
       <InfoTitle>중고차</InfoTitle>
       {[...Array(totalCount)].map((info, index) => {
         const carNumber = index + 1;
-        console.log(typeof -carNumber);
+
         return (
           <>
             <ShowInfoContainer>
@@ -40,12 +48,28 @@ const CarInfoContainer = () => {
             </ShowInfoContainer>
             {showCar > 0 && showCar === carNumber && (
               <>
-                <Accident />
-                <Repair />
-                <Manufacturer />
-                <CarPicture />
-                <CarPrice />
-                <ResetSave />
+                <Accident
+                  isAccident={isAccident}
+                  setIsAccident={setIsAccident}
+                />
+                <Repair repairInfo={repairInfo} setRepairInfo={setRepairInfo} />
+                <Manufacturer
+                  manufacturer={manufacturer}
+                  setManufacturer={setManufacturer}
+                />
+                <CarPicture
+                  filesArray={filesArray}
+                  setFilesArray={setFilesArray}
+                  count={count}
+                  setCount={setCount}
+                />
+                <CarPrice price={price} setPrice={setPrice} />
+                <ResetSave
+                  state={state}
+                  setState={setState}
+                  saveTime={saveTime}
+                  setSaveTime={setSaveTime}
+                />
               </>
             )}
           </>

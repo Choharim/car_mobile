@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { AiOutlinePlus } from "react-icons/ai";
 
-const CarPicture = () => {
-  const [filesArray, setFilesArray] = useState([]);
-  const [count, setCount] = useState(0);
-
+const CarPicture = ({ filesArray, setFilesArray, count, setCount }) => {
   const uploadFiles = (event) => {
     event.preventDefault();
     const reader = new FileReader();

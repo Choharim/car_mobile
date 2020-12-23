@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Button from "../../../components/button/Button";
 
-const Manufacturer = () => {
-  const [manufacturer, setManufacturer] = useState();
+const Manufacturer = ({ manufacturer, setManufacturer }) => {
   const saveManufac = (event) => {
     const {
       target: { name, checked },
