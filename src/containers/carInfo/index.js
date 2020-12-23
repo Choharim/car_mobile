@@ -8,36 +8,37 @@ import CarPicture from "./_fragments/CarPicture";
 import CarPrice from "./_fragments/CarPrice";
 import ResetSave from "./_fragments/ResetSave";
 import { AiOutlinePlus } from "react-icons/ai";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const CarInfoContainer = () => {
-  const [save, setSave] = useState(false);
-  const [addCount, setAddCount] = useState(0);
-  const [show, setShow] = useState(false);
-  const [showCount, setShowCount] = useState(0);
+  const [storage, setStorage] = useState(false);
+  const [totalCount, setTotalCount] = useState(1);
+  const [showCar, setShowCar] = useState(-1);
 
-  const saveInfo = () => {
-    setSave(true);
+  const showCarNumber = (event) => {
+    const {
+      target: { id },
+    } = event;
+    setShowCar(parseInt(id));
   };
 
   return (
     <InfoContainer>
       <InfoTitle>중고차</InfoTitle>
-      {[...Array(addCount)].map((info, index) => {
+      {[...Array(totalCount)].map((info, index) => {
+        const carNumber = index + 1;
+        console.log(typeof -carNumber);
         return (
           <>
             <ShowInfoContainer>
-              <ShowInfoTitle>중고차{index + 1} 정보</ShowInfoTitle>
-              <RotationIcon
-                show={show}
-                showCount={showCount === index + 1}
-                onClick={() => {
-                  setShow(!show);
-                  setShowCount(index + 1);
-                }}
-              />
+              <ShowInfoTitle>중고차{carNumber} 정보</ShowInfoTitle>
+              {showCar > 0 && showCar === carNumber ? (
+                <IoIosArrowDown id={-carNumber} onClick={showCarNumber} />
+              ) : (
+                <IoIosArrowUp id={carNumber} onClick={showCarNumber} />
+              )}
             </ShowInfoContainer>
-            {showCount === index + 1 && show ? (
+            {showCar > 0 && showCar === carNumber && (
               <>
                 <Accident />
                 <Repair />
@@ -46,15 +47,15 @@ const CarInfoContainer = () => {
                 <CarPrice />
                 <ResetSave />
               </>
-            ) : null}
+            )}
           </>
         );
       })}
-      <AddBtn round onClick={() => setAddCount(addCount + 1)}>
+      <AddBtn round onClick={() => setTotalCount(totalCount + 1)}>
         <AddIcon />
         중고차량 추가하기
       </AddBtn>
-      <SaveBtn color="#315676" onClick={saveInfo}>
+      <SaveBtn color="#315676" onClick={() => setStorage(true)}>
         판매 등록하기
       </SaveBtn>
     </InfoContainer>
@@ -91,15 +92,6 @@ const ShowInfoTitle = styled.p`
   margin: 0;
   padding-bottom: 5px;
   font-weight: 600;
-`;
-
-const RotationIcon = styled(IoIosArrowDown)`
-  ${(props) =>
-    props.show &&
-    props.showCount &&
-    css`
-      transform: rotate(180deg);
-    `}
 `;
 
 const AddBtn = styled(Button)`

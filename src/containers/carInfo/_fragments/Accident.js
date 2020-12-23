@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "../../../components/button/Button";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const Accident = () => {
   const [isAccident, setIsAccident] = useState();
