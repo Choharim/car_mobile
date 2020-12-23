@@ -51,42 +51,44 @@ const CarInfoContainer = () => {
       <InfoTitle>중고차</InfoTitle>
       {[...Array(totalCount)].map((info, index) => {
         const carNumber = index + 1;
-
         return (
           <>
             <ShowInfoContainer>
               <ShowInfoTitle>중고차{carNumber} 정보</ShowInfoTitle>
-              {showCar > 0 && showCar === carNumber ? (
-                <IoIosArrowDown id={-carNumber} onClick={showCarNumber} />
-              ) : (
-                <IoIosArrowUp id={carNumber} onClick={showCarNumber} />
-              )}
             </ShowInfoContainer>
-            {showCar > 0 && showCar === carNumber && (
+            {showCar > 0 && showCar === carNumber ? (
               <>
-                <Accident
-                  isAccident={isAccident}
-                  setIsAccident={setIsAccident}
-                />
-                <Repair repairInfo={repairInfo} setRepairInfo={setRepairInfo} />
-                <Manufacturer
-                  manufacturer={manufacturer}
-                  setManufacturer={setManufacturer}
-                />
-                <CarPicture
-                  filesArray={filesArray}
-                  setFilesArray={setFilesArray}
-                  count={count}
-                  setCount={setCount}
-                />
-                <CarPrice price={price} setPrice={setPrice} />
-                <ResetSave
-                  state={state}
-                  setState={setState}
-                  saveTime={saveTime}
-                  setSaveTime={setSaveTime}
-                />
+                <DownIcon id={-carNumber} onClick={showCarNumber} />
+                <ContentContainer>
+                  <Accident
+                    isAccident={isAccident}
+                    setIsAccident={setIsAccident}
+                  />
+                  <Repair
+                    repairInfo={repairInfo}
+                    setRepairInfo={setRepairInfo}
+                  />
+                  <Manufacturer
+                    manufacturer={manufacturer}
+                    setManufacturer={setManufacturer}
+                  />
+                  <CarPicture
+                    filesArray={filesArray}
+                    setFilesArray={setFilesArray}
+                    count={count}
+                    setCount={setCount}
+                  />
+                  <CarPrice price={price} setPrice={setPrice} />
+                  <ResetSave
+                    state={state}
+                    setState={setState}
+                    saveTime={saveTime}
+                    setSaveTime={setSaveTime}
+                  />
+                </ContentContainer>
               </>
+            ) : (
+              <UpIcon id={carNumber} onClick={showCarNumber} />
             )}
           </>
         );
@@ -112,6 +114,13 @@ const InfoContainer = styled.div`
   align-items: center;
 `;
 
+const ContentContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const InfoTitle = styled.p`
   font-size: 1.6rem;
   font-weight: 600;
@@ -119,13 +128,22 @@ const InfoTitle = styled.p`
   color: #315676;
 `;
 
+const DownIcon = styled(IoIosArrowDown)`
+  position: relative;
+  left: 40%;
+  top: -30px;
+`;
+
+const UpIcon = styled(IoIosArrowUp)`
+  position: relative;
+  left: 40%;
+  top: -30px;
+`;
+
 const ShowInfoContainer = styled.div`
   width: 95%;
   margin: 10px 0;
   border-bottom: 1px solid #b8b8b8;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 `;
 
 const ShowInfoTitle = styled.p`
