@@ -11,7 +11,6 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 
 const CarInfoContainer = () => {
-  const [storage, setStorage] = useState(false);
   const [totalCount, setTotalCount] = useState(1);
   const [showCar, setShowCar] = useState(-1);
   const [isAccident, setIsAccident] = useState();
@@ -28,6 +27,23 @@ const CarInfoContainer = () => {
       target: { id },
     } = event;
     setShowCar(parseInt(id));
+  };
+
+  const addCar = () => {
+    if (state === "save") {
+      setTotalCount(totalCount + 1);
+    }
+  };
+
+  const storage = () => {
+    const storageObj = {
+      isAccident,
+      repairInfo,
+      manufacturer,
+      filesArray,
+      price,
+    };
+    localStorage.setItem("carInfo", JSON.stringify(storageObj));
   };
 
   return (
@@ -75,11 +91,11 @@ const CarInfoContainer = () => {
           </>
         );
       })}
-      <AddBtn round onClick={() => setTotalCount(totalCount + 1)}>
+      <AddBtn round onClick={addCar}>
         <AddIcon />
         중고차량 추가하기
       </AddBtn>
-      <SaveBtn color="#315676" onClick={() => setStorage(true)}>
+      <SaveBtn color="#315676" onClick={storage}>
         판매 등록하기
       </SaveBtn>
     </InfoContainer>
