@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import Button from "../../../components/button/Button";
 
 const ResetSave = ({ state, setState, saveTime, setSaveTime }) => {
@@ -38,7 +38,10 @@ const ResetSave = ({ state, setState, saveTime, setSaveTime }) => {
         </IntermediSaveBtn>
       </ResetSaveContainer>
       {saveTime && (
-        <IntermediSaveTime>{saveTime} 임시저장 되었습니다</IntermediSaveTime>
+        <>
+          <IntermediSaveTime>{saveTime} 임시저장 되었습니다.</IntermediSaveTime>
+          <ModalContainer>{saveTime}에 임시저장 되었습니다.</ModalContainer>
+        </>
       )}
     </>
   );
@@ -68,4 +71,25 @@ const IntermediSaveTime = styled.p`
   width: 100%;
   text-align: center;
   color: #b8b8b8;
+`;
+
+const ModalFadeOut = keyframes`
+   from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+`;
+
+const ModalContainer = styled.p`
+  width: 95%;
+  padding: 10px 0;
+  margin: 0;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #373737;
+  color: white;
+  font-size: 0.8rem;
+  animation: ${ModalFadeOut} 1s ease forwards;
 `;
