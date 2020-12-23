@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import Button from "../../../components/button/Button";
 
-const ResetSave = ({ state, setState, saveTime, setSaveTime }) => {
+const ResetSave = ({ state, setState, saveTime, setSaveTime, id }) => {
   const saveState = (event) => {
     const {
       target: { name },
     } = event;
 
-    setState(name);
-    if (name === "save") {
+    if (parseInt(name) === id) {
       const date = new Date();
       setSaveTime(
         `${date.toLocaleDateString()} ${date.getHours()}:${date.getMinutes()}`
       );
+      setState(parseInt(name));
+    } else {
+      setState(name);
     }
   };
 
@@ -29,15 +31,15 @@ const ResetSave = ({ state, setState, saveTime, setSaveTime }) => {
           초기화
         </ResetBtn>
         <IntermediSaveBtn
-          name="save"
+          name={id}
           round
-          color={state === "save"}
+          color={state === id}
           onClick={saveState}
         >
           중간저장
         </IntermediSaveBtn>
       </ResetSaveContainer>
-      {saveTime && (
+      {saveTime && parseInt(state) === id && (
         <>
           <IntermediSaveTime>{saveTime} 임시저장 되었습니다.</IntermediSaveTime>
           <ModalContainer>{saveTime}에 임시저장 되었습니다.</ModalContainer>

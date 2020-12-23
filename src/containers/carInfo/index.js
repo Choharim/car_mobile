@@ -30,7 +30,7 @@ const CarInfoContainer = () => {
   };
 
   const addCar = () => {
-    if (state === "save") {
+    if (typeof state === "number") {
       setTotalCount(totalCount + 1);
     }
   };
@@ -80,6 +80,7 @@ const CarInfoContainer = () => {
                   />
                   <CarPrice price={price} setPrice={setPrice} />
                   <ResetSave
+                    id={carNumber}
                     state={state}
                     setState={setState}
                     saveTime={saveTime}
