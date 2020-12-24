@@ -29,9 +29,8 @@ const CarInfoContainer = () => {
     }
   };
   const immediateSave = () => {
-    dataArray.pop();
     setDataArray(
-      dataArray.concat({
+      dataArray.slice(0, -1).concat({
         isAccident,
         repairInfo,
         manufacturer,
@@ -43,8 +42,7 @@ const CarInfoContainer = () => {
 
   const immediateRefresh = () => {
     if (dataArray.length !== 1) {
-      dataArray.pop();
-      setDataArray(dataArray);
+      setDataArray(dataArray.slice(0, -1));
     } else {
       setDataArray([{}]);
     }
