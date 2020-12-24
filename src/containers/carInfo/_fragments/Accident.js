@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "../../../components/button/Button";
 import styled from "styled-components";
 
-const Accident = ({ isAccident, setIsAccident }) => {
+const Accident = ({ isAccident, setIsAccident, dataArray, dataObj }) => {
   const saveAccidentInfo = (event) => {
     const {
       target: { name },
     } = event;
-
-    setIsAccident(name);
+    if (Object.keys(dataObj).length === 0) {
+      setIsAccident(name);
+    } else {
+      setIsAccident(dataObj.isAccident);
+    }
   };
 
   return (

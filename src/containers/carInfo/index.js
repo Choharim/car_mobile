@@ -68,21 +68,40 @@ const CarInfoContainer = () => {
         return (
           <>
             <ShowInfoContainer>
-              <ShowInfoTitle>중고차{dataArray.length} 정보</ShowInfoTitle>
+              <ShowInfoTitle>중고차{index + 1} 정보</ShowInfoTitle>
               <IoIosArrowDown />
             </ShowInfoContainer>
             <ContentContainer>
-              <Accident isAccident={isAccident} setIsAccident={setIsAccident} />
-              <Repair repairInfo={repairInfo} setRepairInfo={setRepairInfo} />
+              <Accident
+                isAccident={isAccident}
+                setIsAccident={setIsAccident}
+                dataArray={dataArray}
+                dataObj={dataObj}
+              />
+              <Repair
+                repairInfo={repairInfo}
+                setRepairInfo={setRepairInfo}
+                dataArray={dataArray}
+                dataObj={dataObj}
+              />
               <Manufacturer
                 manufacturer={manufacturer}
                 setManufacturer={setManufacturer}
+                dataArray={dataArray}
+                dataObj={dataObj}
               />
               <CarPicture
                 filesArray={filesArray}
                 setFilesArray={setFilesArray}
+                dataArray={dataArray}
+                dataObj={dataObj}
               />
-              <CarPrice price={price} setPrice={setPrice} />
+              <CarPrice
+                price={price}
+                setPrice={setPrice}
+                dataArray={dataArray}
+                dataObj={dataObj}
+              />
             </ContentContainer>
           </>
         );
