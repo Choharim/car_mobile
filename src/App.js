@@ -1,6 +1,6 @@
 import React from "react";
 import CarInfo from "./pages/carInfo";
-import styled, { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 function App() {
   return (

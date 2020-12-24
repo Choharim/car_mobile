@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { AiOutlinePlus } from "react-icons/ai";
 
-const CarPicture = ({ filesArray, setFilesArray, count, setCount }) => {
+const CarPicture = ({ filesArray, setFilesArray }) => {
+  let pictureCount = 0;
+
   const uploadFiles = (event) => {
     event.preventDefault();
     const reader = new FileReader();
@@ -11,7 +13,7 @@ const CarPicture = ({ filesArray, setFilesArray, count, setCount }) => {
       setFilesArray(filesArray.concat([{ file, url: reader.result }]));
     };
     reader.readAsDataURL(file);
-    setCount(count + 1);
+    pictureCount += 1;
   };
 
   return (
@@ -20,7 +22,7 @@ const CarPicture = ({ filesArray, setFilesArray, count, setCount }) => {
         <CarPictureTitle>차량 사진</CarPictureTitle>
         <div style={{ display: "flex" }}>
           <CountLabel>10장 등록 가능</CountLabel>
-          <Count>{count}/10</Count>
+          <Count>{pictureCount}/10</Count>
         </div>
       </CarPictureTextContainer>
       <CarPictureContainer>
@@ -30,7 +32,7 @@ const CarPicture = ({ filesArray, setFilesArray, count, setCount }) => {
           accept="image/jpg,impge/png,image/jpeg,image/gif"
           onChange={uploadFiles}
         />
-        {count <= 9 && (
+        {pictureCount <= 10 && (
           <UpLoadLabel htmlFor="file">
             <AiOutlinePlus style={{ fontSize: "2rem" }} />
           </UpLoadLabel>
