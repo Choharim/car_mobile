@@ -37,11 +37,11 @@ const CarInfoContainer = () => {
         manufacturer,
         filesArray,
         price,
-        saveTime,
       })
     );
   };
-  const refresh = () => {
+
+  const immediateRefresh = () => {
     if (dataArray.length !== 1) {
       dataArray.pop();
       setDataArray(dataArray);
@@ -49,7 +49,6 @@ const CarInfoContainer = () => {
       setDataArray([{}]);
     }
   };
-
   console.log(dataArray);
   return (
     <InfoContainer>
@@ -78,8 +77,8 @@ const CarInfoContainer = () => {
         );
       })}
       <ResetSave
-        refresh={refresh}
         immediateSave={immediateSave}
+        immediateRefresh={immediateRefresh}
         state={state}
         setState={setState}
         saveTime={saveTime}

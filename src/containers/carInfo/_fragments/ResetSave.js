@@ -8,7 +8,7 @@ const ResetSave = ({
   saveTime,
   setSaveTime,
   immediateSave,
-  refresh,
+  immediateRefresh,
 }) => {
   const saveState = (event) => {
     const {
@@ -23,7 +23,7 @@ const ResetSave = ({
       );
       immediateSave();
     } else if (name === "reset") {
-      refresh();
+      immediateRefresh();
     }
   };
 
