@@ -39,7 +39,6 @@ const CarInfoContainer = () => {
       })
     );
   };
-
   const immediateRefresh = () => {
     if (dataArray.length !== 1) {
       setDataArray(dataArray.slice(0, -1));
@@ -47,6 +46,20 @@ const CarInfoContainer = () => {
       setDataArray([{}]);
     }
   };
+  const addStorage = () => {
+    dataArray.forEach((dataObj) => {
+      if (
+        dataObj.isAccident !== undefined &&
+        dataObj.repairInfo !== "" &&
+        dataObj.manufacturer !== undefined &&
+        dataObj.filesArray.length !== 0 &&
+        dataObj.price !== ""
+      ) {
+        localStorage.setItem("carInfo", JSON.stringify(dataArray));
+      }
+    });
+  };
+
   console.log(dataArray);
   return (
     <InfoContainer>
@@ -86,7 +99,9 @@ const CarInfoContainer = () => {
         <AddIcon />
         중고차량 추가하기
       </AddBtn>
-      <SaveBtn color="#315676">판매 등록하기</SaveBtn>
+      <SaveBtn color="#315676" onClick={addStorage}>
+        판매 등록하기
+      </SaveBtn>
     </InfoContainer>
   );
 };
