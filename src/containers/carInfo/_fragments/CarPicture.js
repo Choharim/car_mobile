@@ -2,9 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { AiOutlinePlus } from "react-icons/ai";
 
-const CarPicture = ({ filesArray, setFilesArray }) => {
-  let pictureCount = 0;
-
+const CarPicture = ({
+  filesArray,
+  setFilesArray,
+  pictureCount,
+  setPictureCount,
+}) => {
   const uploadFiles = (event) => {
     event.preventDefault();
     const reader = new FileReader();
@@ -13,7 +16,7 @@ const CarPicture = ({ filesArray, setFilesArray }) => {
       setFilesArray(filesArray.concat([{ file, url: reader.result }]));
     };
     reader.readAsDataURL(file);
-    pictureCount += 1;
+    setPictureCount(pictureCount + 1);
   };
 
   return (
@@ -32,7 +35,7 @@ const CarPicture = ({ filesArray, setFilesArray }) => {
           accept="image/jpg,impge/png,image/jpeg,image/gif"
           onChange={uploadFiles}
         />
-        {pictureCount <= 10 && (
+        {pictureCount <= 9 && (
           <UpLoadLabel htmlFor="file">
             <AiOutlinePlus style={{ fontSize: "2rem" }} />
           </UpLoadLabel>

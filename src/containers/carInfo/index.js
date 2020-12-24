@@ -15,6 +15,7 @@ const CarInfoContainer = () => {
   const [repairInfo, setRepairInfo] = useState("");
   const [manufacturer, setManufacturer] = useState();
   const [filesArray, setFilesArray] = useState([]);
+  const [pictureCount, setPictureCount] = useState(0);
   const [price, setPrice] = useState("");
   const [state, setState] = useState();
   const [saveTime, setSaveTime] = useState();
@@ -95,6 +96,8 @@ const CarInfoContainer = () => {
                 setFilesArray={setFilesArray}
                 dataArray={dataArray}
                 dataObj={dataObj}
+                pictureCount={pictureCount}
+                setPictureCount={setPictureCount}
               />
               <CarPrice
                 price={price}
