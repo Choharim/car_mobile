@@ -20,6 +20,32 @@ const CarInfoContainer = () => {
   const [saveTime, setSaveTime] = useState();
   const [dataArray, setDataArray] = useState([{}]);
 
+  const addAnotherCar = () => {
+    if (Object.keys(dataArray[dataArray.length - 1]).length === 0) {
+      //dataArray맨 마지막 obj에 정보가 담겨있지 않으면 임시저장 안했다는 거니까
+      return;
+    } else {
+      setDataArray(dataArray.concat({}));
+    }
+  };
+  const immediateSave = () => {
+    setDataArray(dataArray.slice(0, dataArray.length - 1));
+    setDataArray(
+      dataArray.concat({
+        isAccident: { isAccident },
+        repairInfo: { repairInfo },
+        manufacturer: { manufacturer },
+        filesArray: { filesArray },
+        price: { price },
+        saveTime: { saveTime },
+      })
+    );
+  };
+  const refresh = () => {
+    setDataArray(dataArray.slice(0, dataArray.length - 1));
+  };
+
+  console.log(dataArray);
   return (
     <InfoContainer>
       <InfoTitle>중고차</InfoTitle>
@@ -27,7 +53,7 @@ const CarInfoContainer = () => {
         return (
           <>
             <ShowInfoContainer>
-              <ShowInfoTitle>중고차 정보</ShowInfoTitle>
+              <ShowInfoTitle>중고차{dataArray.length} 정보</ShowInfoTitle>
               <IoIosArrowDown />
             </ShowInfoContainer>
             <ContentContainer>
@@ -47,12 +73,14 @@ const CarInfoContainer = () => {
         );
       })}
       <ResetSave
+        refresh={refresh}
+        immediateSave={immediateSave}
         state={state}
         setState={setState}
         saveTime={saveTime}
         setSaveTime={setSaveTime}
       />
-      <AddBtn round>
+      <AddBtn round onClick={addAnotherCar}>
         <AddIcon />
         중고차량 추가하기
       </AddBtn>
