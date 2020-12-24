@@ -47,7 +47,7 @@ const ResetSave = ({
           중간저장
         </IntermediSaveBtn>
       </ResetSaveContainer>
-      {saveTime && state === "save" && (
+      {saveTime && (
         <>
           <IntermediSaveTime>{saveTime} 임시저장 되었습니다.</IntermediSaveTime>
           <ModalContainer>{saveTime}에 임시저장 되었습니다.</ModalContainer>

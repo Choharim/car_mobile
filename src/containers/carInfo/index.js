@@ -29,20 +29,25 @@ const CarInfoContainer = () => {
     }
   };
   const immediateSave = () => {
-    setDataArray(dataArray.slice(0, dataArray.length - 1));
+    dataArray.pop();
     setDataArray(
       dataArray.concat({
-        isAccident: { isAccident },
-        repairInfo: { repairInfo },
-        manufacturer: { manufacturer },
-        filesArray: { filesArray },
-        price: { price },
-        saveTime: { saveTime },
+        isAccident,
+        repairInfo,
+        manufacturer,
+        filesArray,
+        price,
+        saveTime,
       })
     );
   };
   const refresh = () => {
-    setDataArray(dataArray.slice(0, dataArray.length - 1));
+    if (dataArray.length !== 1) {
+      dataArray.pop();
+      setDataArray(dataArray);
+    } else {
+      setDataArray([{}]);
+    }
   };
 
   console.log(dataArray);
