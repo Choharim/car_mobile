@@ -39,6 +39,7 @@ const CarInfoContainer = () => {
         price,
       })
     );
+
     setIsAccident();
     setRepairInfo("");
     setManufacturer();
@@ -46,6 +47,18 @@ const CarInfoContainer = () => {
     setPictureCount(0);
     setPrice("");
     setSaveTime();
+    localStorage.setItem(
+      "임시저장",
+      JSON.stringify(
+        dataArray.slice(0, -1).concat({
+          isAccident,
+          repairInfo,
+          manufacturer,
+          filesArray,
+          price,
+        })
+      )
+    );
   };
   const immediateRefresh = () => {
     if (dataArray.length !== 1) {
