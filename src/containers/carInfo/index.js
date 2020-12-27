@@ -48,7 +48,7 @@ const CarInfoContainer = () => {
     setPrice("");
     setSaveTime();
     localStorage.setItem(
-      "임시저장",
+      "tempo",
       JSON.stringify(
         dataArray.slice(0, -1).concat({
           isAccident,
@@ -104,6 +104,7 @@ const CarInfoContainer = () => {
                 isAccident={isAccident}
                 setIsAccident={setIsAccident}
                 dataObj={dataObj}
+                index={index}
               />
               <Repair
                 repairInfo={repairInfo}

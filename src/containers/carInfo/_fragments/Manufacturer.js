@@ -3,6 +3,15 @@ import styled, { css } from "styled-components";
 import Button from "../../../components/button/Button";
 
 const Manufacturer = ({ manufacturer, setManufacturer, dataObj }) => {
+  const manufacData = [
+    { valueName: "hyundai", titleName: "현대" },
+    { valueName: "samsung", titleName: "르노삼성" },
+    { valueName: "kia", titleName: "기아" },
+    { valueName: "ssangyong", titleName: "쌍용" },
+    { valueName: "daewoo", titleName: "대우" },
+    { valueName: "etc", titleName: "기타" },
+  ];
+
   const saveManufac = (event) => {
     const {
       target: { name, checked },
@@ -29,72 +38,20 @@ const Manufacturer = ({ manufacturer, setManufacturer, dataObj }) => {
         </div>
       </ManufacturerTextContainer>
       <ManufacturerContainer>
-        <CarBtn
-          name="hyundai"
-          onClick={saveManufac}
-          color={
-            dataObj.manufacturer
-              ? dataObj.manufacturer === "hyundai"
-              : manufacturer === "hyundai"
-          }
-        >
-          현대
-        </CarBtn>
-        <CenterCarBtn
-          name="samsung"
-          onClick={saveManufac}
-          color={
-            dataObj.manufacturer
-              ? dataObj.manufacturer === "samsung"
-              : manufacturer === "samsung"
-          }
-        >
-          르노 삼성
-        </CenterCarBtn>
-        <CarBtn
-          name="kia"
-          onClick={saveManufac}
-          color={
-            dataObj.manufacturer
-              ? dataObj.manufacturer === "kia"
-              : manufacturer === "kia"
-          }
-        >
-          기아
-        </CarBtn>
-        <CarBtn
-          name="ssangyong"
-          onClick={saveManufac}
-          color={
-            dataObj.manufacturer
-              ? dataObj.manufacturer === "ssangyong"
-              : manufacturer === "ssangyong"
-          }
-        >
-          쌍용
-        </CarBtn>
-        <CenterCarBtn
-          name="daewoo"
-          onClick={saveManufac}
-          color={
-            dataObj.manufacturer
-              ? dataObj.manufacturer === "daewoo"
-              : manufacturer === "daewoo"
-          }
-        >
-          GM 대우
-        </CenterCarBtn>
-        <CarBtn
-          name="etc"
-          onClick={saveManufac}
-          color={
-            dataObj.manufacturer
-              ? dataObj.manufacturer === "etc"
-              : manufacturer === "etc"
-          }
-        >
-          기타
-        </CarBtn>
+        {manufacData.map((manufacObj, index) => (
+          <CarBtn
+            key={index}
+            name={manufacObj.valueName}
+            onClick={saveManufac}
+            color={
+              dataObj.manufacturer
+                ? dataObj.manufacturer === manufacObj.valueName
+                : manufacturer === manufacObj.valueName
+            }
+          >
+            {manufacObj.titleName}
+          </CarBtn>
+        ))}
       </ManufacturerContainer>
     </>
   );
