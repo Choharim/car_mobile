@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const CarPrice = ({ price, setPrice }) => {
+const CarPrice = ({ price, setPrice, dataObj }) => {
   const savePrice = (event) => {
     const {
       target: { value },
@@ -19,7 +19,11 @@ const CarPrice = ({ price, setPrice }) => {
         <CarPriceText>희망 가격을 제시해 주세요</CarPriceText>
       </CarPriceTextContainer>
       <CarPriceContainer>
-        <CarPriceInput type="text" value={price} onChange={savePrice} />
+        <CarPriceInput
+          type="text"
+          value={dataObj.price ? dataObj.price : price}
+          onChange={savePrice}
+        />
       </CarPriceContainer>
     </>
   );

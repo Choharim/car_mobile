@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import Button from "../../../components/button/Button";
 
-const Manufacturer = ({ manufacturer, setManufacturer }) => {
+const Manufacturer = ({ manufacturer, setManufacturer, dataObj }) => {
   const saveManufac = (event) => {
     const {
       target: { name, checked },
@@ -32,35 +32,67 @@ const Manufacturer = ({ manufacturer, setManufacturer }) => {
         <CarBtn
           name="hyundai"
           onClick={saveManufac}
-          color={manufacturer === "hyundai"}
+          color={
+            dataObj.manufacturer
+              ? dataObj.manufacturer === "hyundai"
+              : manufacturer === "hyundai"
+          }
         >
           현대
         </CarBtn>
         <CenterCarBtn
           name="samsung"
           onClick={saveManufac}
-          color={manufacturer === "samsung"}
+          color={
+            dataObj.manufacturer
+              ? dataObj.manufacturer === "samsung"
+              : manufacturer === "samsung"
+          }
         >
           르노 삼성
         </CenterCarBtn>
-        <CarBtn name="kia" onClick={saveManufac} color={manufacturer === "kia"}>
+        <CarBtn
+          name="kia"
+          onClick={saveManufac}
+          color={
+            dataObj.manufacturer
+              ? dataObj.manufacturer === "kia"
+              : manufacturer === "kia"
+          }
+        >
           기아
         </CarBtn>
         <CarBtn
           name="ssangyong"
           onClick={saveManufac}
-          color={manufacturer === "ssangyong"}
+          color={
+            dataObj.manufacturer
+              ? dataObj.manufacturer === "ssangyong"
+              : manufacturer === "ssangyong"
+          }
         >
           쌍용
         </CarBtn>
         <CenterCarBtn
           name="daewoo"
           onClick={saveManufac}
-          color={manufacturer === "daewoo"}
+          color={
+            dataObj.manufacturer
+              ? dataObj.manufacturer === "daewoo"
+              : manufacturer === "daewoo"
+          }
         >
           GM 대우
         </CenterCarBtn>
-        <CarBtn name="etc" onClick={saveManufac} color={manufacturer === "etc"}>
+        <CarBtn
+          name="etc"
+          onClick={saveManufac}
+          color={
+            dataObj.manufacturer
+              ? dataObj.manufacturer === "etc"
+              : manufacturer === "etc"
+          }
+        >
           기타
         </CarBtn>
       </ManufacturerContainer>

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const Repair = ({ repairInfo, setRepairInfo }) => {
+const Repair = ({ repairInfo, setRepairInfo, dataObj }) => {
   const saveRepairInfo = (event) => {
     const {
       target: { value },
@@ -15,7 +15,7 @@ const Repair = ({ repairInfo, setRepairInfo }) => {
       </RepaiarTextContaier>
       <RepairContainer>
         <RepairInput
-          value={repairInfo}
+          value={dataObj.repairInfo ? dataObj.repairInfo : repairInfo}
           onChange={saveRepairInfo}
           wrap="hard"
           placeholder="ex) 범퍼교환"

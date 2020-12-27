@@ -2,16 +2,12 @@ import React from "react";
 import Button from "../../../components/button/Button";
 import styled from "styled-components";
 
-const Accident = ({ isAccident, setIsAccident, dataArray, dataObj }) => {
+const Accident = ({ isAccident, setIsAccident, dataObj }) => {
   const saveAccidentInfo = (event) => {
     const {
       target: { name },
     } = event;
-    if (Object.keys(dataObj).length === 0) {
-      setIsAccident(name);
-    } else {
-      setIsAccident(dataObj.isAccident);
-    }
+    setIsAccident(name);
   };
 
   return (
@@ -23,7 +19,11 @@ const Accident = ({ isAccident, setIsAccident, dataArray, dataObj }) => {
         <IsAccidentBtn
           round
           name="isAccident"
-          color={isAccident === "isAccident"}
+          color={
+            dataObj.isAccident
+              ? dataObj.isAccident === "isAccident"
+              : isAccident === "isAccident"
+          }
           onClick={saveAccidentInfo}
         >
           사고이력 있음
@@ -31,7 +31,11 @@ const Accident = ({ isAccident, setIsAccident, dataArray, dataObj }) => {
         <IsNotAccidentBtn
           round
           name="isNotAccident"
-          color={isAccident === "isNotAccident"}
+          color={
+            dataObj.isAccident
+              ? dataObj.isAccident === "isNotAccident"
+              : isAccident === "isNotAccident"
+          }
           onClick={saveAccidentInfo}
         >
           사고이력 없음

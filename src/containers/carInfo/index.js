@@ -39,6 +39,13 @@ const CarInfoContainer = () => {
         price,
       })
     );
+    setIsAccident();
+    setRepairInfo("");
+    setManufacturer();
+    setFilesArray([]);
+    setPictureCount(0);
+    setPrice("");
+    setSaveTime();
   };
   const immediateRefresh = () => {
     if (dataArray.length !== 1) {
@@ -76,47 +83,39 @@ const CarInfoContainer = () => {
               <Accident
                 isAccident={isAccident}
                 setIsAccident={setIsAccident}
-                dataArray={dataArray}
                 dataObj={dataObj}
               />
               <Repair
                 repairInfo={repairInfo}
                 setRepairInfo={setRepairInfo}
-                dataArray={dataArray}
                 dataObj={dataObj}
               />
               <Manufacturer
                 manufacturer={manufacturer}
                 setManufacturer={setManufacturer}
-                dataArray={dataArray}
                 dataObj={dataObj}
               />
               <CarPicture
                 filesArray={filesArray}
                 setFilesArray={setFilesArray}
-                dataArray={dataArray}
                 dataObj={dataObj}
                 pictureCount={pictureCount}
                 setPictureCount={setPictureCount}
               />
-              <CarPrice
-                price={price}
-                setPrice={setPrice}
-                dataArray={dataArray}
-                dataObj={dataObj}
+              <CarPrice price={price} setPrice={setPrice} dataObj={dataObj} />
+              <ResetSave
+                immediateSave={immediateSave}
+                immediateRefresh={immediateRefresh}
+                state={state}
+                setState={setState}
+                saveTime={saveTime}
+                setSaveTime={setSaveTime}
               />
             </ContentContainer>
           </>
         );
       })}
-      <ResetSave
-        immediateSave={immediateSave}
-        immediateRefresh={immediateRefresh}
-        state={state}
-        setState={setState}
-        saveTime={saveTime}
-        setSaveTime={setSaveTime}
-      />
+
       <AddBtn round onClick={addAnotherCar}>
         <AddIcon />
         중고차량 추가하기
@@ -185,4 +184,6 @@ const SaveBtn = styled(Button)`
   height: 70px;
   margin-top: 20px;
   font-size: 1.4rem;
+  position: relative;
+  bottom: 0;
 `;

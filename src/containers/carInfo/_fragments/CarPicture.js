@@ -7,6 +7,7 @@ const CarPicture = ({
   setFilesArray,
   pictureCount,
   setPictureCount,
+  dataObj,
 }) => {
   const uploadFiles = (event) => {
     event.preventDefault();
@@ -25,7 +26,10 @@ const CarPicture = ({
         <CarPictureTitle>차량 사진</CarPictureTitle>
         <div style={{ display: "flex" }}>
           <CountLabel>10장 등록 가능</CountLabel>
-          <Count>{pictureCount}/10</Count>
+          <Count>
+            {dataObj.filesArray ? dataObj.filesArray.length : pictureCount}
+            /10
+          </Count>
         </div>
       </CarPictureTextContainer>
       <CarPictureContainer>
@@ -40,9 +44,13 @@ const CarPicture = ({
             <AiOutlinePlus style={{ fontSize: "2rem" }} />
           </UpLoadLabel>
         )}
-        {filesArray.map((fileObj, index) => (
-          <PicturePreview key={index} src={fileObj.url} />
-        ))}
+        {dataObj.filesArray
+          ? dataObj.filesArray.map((fileObj, index) => (
+              <PicturePreview key={index} src={fileObj.url} />
+            ))
+          : filesArray.map((fileObj, index) => (
+              <PicturePreview key={index} src={fileObj.url} />
+            ))}
       </CarPictureContainer>
     </>
   );
