@@ -9,6 +9,7 @@ const ResetSave = ({
   setSaveTime,
   immediateSave,
   immediateRefresh,
+  index,
 }) => {
   const saveState = (event) => {
     const {
@@ -21,9 +22,9 @@ const ResetSave = ({
       setSaveTime(
         `${date.toLocaleDateString()} ${date.getHours()}:${date.getMinutes()}`
       );
-      immediateSave();
+      immediateSave(index);
     } else if (name === "reset") {
-      immediateRefresh();
+      immediateRefresh(index);
     }
   };
 

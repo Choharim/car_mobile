@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Accident from "./_fragments/Accident";
 import styled from "styled-components";
 import Button from "../../components/button/Button";
@@ -20,6 +20,12 @@ const CarInfoContainer = () => {
   const [state, setState] = useState();
   const [saveTime, setSaveTime] = useState();
   const [dataArray, setDataArray] = useState([{}]);
+
+  useEffect(() => {
+    if (JSON.parse(localStorage.getItem("tempSave_carInfo"))) {
+      setDataArray(JSON.parse(localStorage.getItem("tempSave_carInfo")));
+    }
+  }, []);
 
   const addAnotherCar = () => {
     if (Object.keys(dataArray[dataArray.length - 1]).length === 0) {
@@ -48,7 +54,7 @@ const CarInfoContainer = () => {
     setPrice("");
     setSaveTime();
     localStorage.setItem(
-      "tempo",
+      "tempSave_carInfo",
       JSON.stringify(
         dataArray.slice(0, -1).concat({
           isAccident,
@@ -60,11 +66,16 @@ const CarInfoContainer = () => {
       )
     );
   };
-  const immediateRefresh = () => {
+  const immediateRefresh = (index) => {
     if (dataArray.length !== 1) {
-      setDataArray(dataArray.slice(0, -1));
+      setDataArray(dataArray.filter((obj, id) => id !== index));
+      localStorage.setItem(
+        "tempSave_carInfo",
+        JSON.stringify(dataArray.filter((obj, id) => id !== index))
+      );
     } else {
       setDataArray([{}]);
+      localStorage.setItem("tempSave_carInfo", JSON.stringify([{}]));
     }
     setIsAccident();
     setRepairInfo("");
@@ -125,6 +136,7 @@ const CarInfoContainer = () => {
               />
               <CarPrice price={price} setPrice={setPrice} dataObj={dataObj} />
               <ResetSave
+                index={index}
                 immediateSave={immediateSave}
                 immediateRefresh={immediateRefresh}
                 state={state}

@@ -2,14 +2,13 @@ import React from "react";
 import Button from "../../../components/button/Button";
 import styled from "styled-components";
 
-const Accident = ({ isAccident, setIsAccident, dataObj, index }) => {
+const Accident = ({ isAccident, setIsAccident, dataObj }) => {
   const saveAccidentInfo = (event) => {
     const {
       target: { name },
     } = event;
     setIsAccident(name);
   };
-  const parsed_LS = JSON.parse(localStorage.getItem("tempo"));
 
   return (
     <>
