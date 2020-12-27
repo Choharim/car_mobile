@@ -53,6 +53,13 @@ const CarInfoContainer = () => {
     } else {
       setDataArray([{}]);
     }
+    setIsAccident();
+    setRepairInfo("");
+    setManufacturer();
+    setFilesArray([]);
+    setPictureCount(0);
+    setPrice("");
+    setSaveTime();
   };
   const addStorage = () => {
     dataArray.forEach((dataObj) => {
