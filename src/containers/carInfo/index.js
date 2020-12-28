@@ -11,14 +11,14 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { IoIosArrowDown } from "react-icons/io";
 
 const CarInfoContainer = () => {
-  const [isAccident, setIsAccident] = useState();
+  const [isAccident, setIsAccident] = useState("");
   const [repairInfo, setRepairInfo] = useState("");
-  const [manufacturer, setManufacturer] = useState();
+  const [manufacturer, setManufacturer] = useState("");
   const [filesArray, setFilesArray] = useState([]);
   const [pictureCount, setPictureCount] = useState(0);
   const [price, setPrice] = useState("");
-  const [state, setState] = useState();
-  const [saveTime, setSaveTime] = useState();
+  const [state, setState] = useState("");
+  const [saveTime, setSaveTime] = useState("");
   const [dataArray, setDataArray] = useState([{}]);
 
   useEffect(() => {
@@ -35,34 +35,31 @@ const CarInfoContainer = () => {
       setDataArray(dataArray.concat({}));
     }
   };
-  const immediateSave = () => {
+  const immediateSave = (index) => {
     setDataArray(
-      dataArray.slice(0, -1).concat({
-        isAccident,
-        repairInfo,
-        manufacturer,
-        filesArray,
-        price,
-      })
+      dataArray.map((obj, id) =>
+        id === index
+          ? { isAccident, repairInfo, manufacturer, filesArray, price }
+          : obj
+      )
+      //dataArray index에 있는 obj를 {isAccident ....}로 바꿔야 함
     );
 
-    setIsAccident();
+    setIsAccident("");
     setRepairInfo("");
-    setManufacturer();
+    setManufacturer("");
     setFilesArray([]);
     setPictureCount(0);
     setPrice("");
-    setSaveTime();
+    setSaveTime("");
     localStorage.setItem(
       "tempSave_carInfo",
       JSON.stringify(
-        dataArray.slice(0, -1).concat({
-          isAccident,
-          repairInfo,
-          manufacturer,
-          filesArray,
-          price,
-        })
+        dataArray.map((obj, id) =>
+          id === index
+            ? { isAccident, repairInfo, manufacturer, filesArray, price }
+            : obj
+        )
       )
     );
   };
@@ -77,21 +74,20 @@ const CarInfoContainer = () => {
       setDataArray([{}]);
       localStorage.setItem("tempSave_carInfo", JSON.stringify([{}]));
     }
-    setIsAccident();
+    setIsAccident("");
     setRepairInfo("");
-    setManufacturer();
+    setManufacturer("");
     setFilesArray([]);
     setPictureCount(0);
     setPrice("");
-    setSaveTime();
+    setSaveTime("");
   };
   const addStorage = () => {
-    dataArray.forEach((dataObj) => {
+    dataArray.map((dataObj) => {
       if (
-        dataObj.isAccident !== undefined &&
+        dataObj.isAccident !== "" &&
         dataObj.repairInfo !== "" &&
-        dataObj.manufacturer !== undefined &&
-        dataObj.filesArray.length !== 0 &&
+        dataObj.manufacturer !== "" &&
         dataObj.price !== ""
       ) {
         localStorage.setItem("carInfo", JSON.stringify(dataArray));
@@ -188,7 +184,7 @@ const ShowInfoContainer = styled.div`
 
 const ShowInfoTitle = styled.p`
   margin: 0;
-  padding-bottom: 5px;
+  padding: 15px 0 5px 0;
   font-weight: 600;
 `;
 
