@@ -20,7 +20,7 @@ const CarInfoContainer = () => {
   const [state, setState] = useState("");
   const [saveTime, setSaveTime] = useState("");
   const [dataArray, setDataArray] = useState([{}]);
-  const [showHide, setShowHide] = useState(false);
+  const [showHide, setShowHide] = useState(true);
   const [show, setShow] = useState(0);
 
   useEffect(() => {
