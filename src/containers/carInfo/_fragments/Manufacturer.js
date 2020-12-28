@@ -33,7 +33,13 @@ const Manufacturer = ({ manufacturer, setManufacturer, dataObj }) => {
             type="checkbox"
             name="foreign"
             onChange={saveManufac}
-            checked={manufacturer !== "foreign" ? false : true}
+            checked={
+              dataObj.manufacturer === "foreign"
+                ? true
+                : manufacturer === "foreign"
+                ? true
+                : false
+            }
           />
         </div>
       </ManufacturerTextContainer>

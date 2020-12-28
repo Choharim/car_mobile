@@ -39,7 +39,13 @@ const CarInfoContainer = () => {
     setDataArray(
       dataArray.map((obj, id) =>
         id === index
-          ? { isAccident, repairInfo, manufacturer, filesArray, price }
+          ? {
+              isAccident: obj.isAccident ? obj.isAccident : isAccident,
+              repairInfo: obj.repairInfo ? obj.repairInfo : repairInfo,
+              manufacturer: obj.manufacturer ? obj.manufacturer : manufacturer,
+              filesArray: obj.filesArray !== null ? obj.filesArray : filesArray,
+              price: obj.price ? obj.price : price,
+            }
           : obj
       )
       //dataArray index에 있는 obj를 {isAccident ....}로 바꿔야 함
@@ -57,7 +63,16 @@ const CarInfoContainer = () => {
       JSON.stringify(
         dataArray.map((obj, id) =>
           id === index
-            ? { isAccident, repairInfo, manufacturer, filesArray, price }
+            ? {
+                isAccident: obj.isAccident ? obj.isAccident : isAccident,
+                repairInfo: obj.repairInfo ? obj.repairInfo : repairInfo,
+                manufacturer: obj.manufacturer
+                  ? obj.manufacturer
+                  : manufacturer,
+                filesArray:
+                  obj.filesArray !== null ? obj.filesArray : filesArray,
+                price: obj.price ? obj.price : price,
+              }
             : obj
         )
       )
