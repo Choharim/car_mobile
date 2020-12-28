@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import styled, { css } from "styled-components";
+import React from "react";
+import styled from "styled-components";
 import Button from "../../../components/button/Button";
 
 const Manufacturer = ({ manufacturer, setManufacturer, dataObj }) => {
@@ -101,12 +101,5 @@ const CheckBoxLabel = styled.p`
 const CarBtn = styled(Button)`
   width: 33%;
   height: 40px;
-  border-radius: 5px;
-`;
-
-const CenterCarBtn = styled(Button)`
-  width: 33%;
-  height: 40px;
-  // margin: 0 10px 10px;
   border-radius: 5px;
 `;

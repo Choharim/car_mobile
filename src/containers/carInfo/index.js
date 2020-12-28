@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Accident from "./_fragments/Accident";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Button from "../../components/button/Button";
 import Repair from "./_fragments/Repair";
 import Manufacturer from "./_fragments/Manufacturer";
@@ -20,6 +20,8 @@ const CarInfoContainer = () => {
   const [state, setState] = useState("");
   const [saveTime, setSaveTime] = useState("");
   const [dataArray, setDataArray] = useState([{}]);
+  const [showHide, setShowHide] = useState(false);
+  const [show, setShow] = useState(0);
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("tempSave_carInfo"))) {
@@ -44,14 +46,13 @@ const CarInfoContainer = () => {
               repairInfo: obj.repairInfo ? obj.repairInfo : repairInfo,
               manufacturer: obj.manufacturer ? obj.manufacturer : manufacturer,
               filesArray:
-                obj.filesArray && obj.filesArray[0].url
+                obj.filesArray && obj.filesArray[0]
                   ? obj.filesArray
                   : filesArray,
               price: obj.price ? obj.price : price,
             }
           : obj
       )
-      //dataArray index에 있는 obj를 {isAccident ....}로 바꿔야 함
     );
 
     setIsAccident("");
@@ -73,7 +74,7 @@ const CarInfoContainer = () => {
                   ? obj.manufacturer
                   : manufacturer,
                 filesArray:
-                  obj.filesArray && obj.filesArray[0].url
+                  obj.filesArray && obj.filesArray[0]
                     ? obj.filesArray
                     : filesArray,
                 price: obj.price ? obj.price : price,
@@ -103,7 +104,7 @@ const CarInfoContainer = () => {
     setSaveTime("");
   };
   const addStorage = () => {
-    dataArray.map((dataObj) => {
+    dataArray.forEach((dataObj) => {
       if (
         dataObj.isAccident !== "" &&
         dataObj.repairInfo !== "" &&
@@ -115,7 +116,6 @@ const CarInfoContainer = () => {
     });
   };
 
-  console.log(dataArray);
   return (
     <InfoContainer>
       <InfoTitle>중고차</InfoTitle>
@@ -124,14 +124,18 @@ const CarInfoContainer = () => {
           <>
             <ShowInfoContainer>
               <ShowInfoTitle>중고차{index + 1} 정보</ShowInfoTitle>
-              <IoIosArrowDown />
+              <IoIosArrowDown
+                onClick={() => {
+                  setShowHide(!showHide);
+                  setShow(index);
+                }}
+              />
             </ShowInfoContainer>
-            <ContentContainer>
+            <ContentContainer hidden={show === index && showHide === false}>
               <Accident
                 isAccident={isAccident}
                 setIsAccident={setIsAccident}
                 dataObj={dataObj}
-                index={index}
               />
               <Repair
                 repairInfo={repairInfo}
@@ -146,9 +150,9 @@ const CarInfoContainer = () => {
               <CarPicture
                 filesArray={filesArray}
                 setFilesArray={setFilesArray}
-                dataObj={dataObj}
                 pictureCount={pictureCount}
                 setPictureCount={setPictureCount}
+                dataObj={dataObj}
               />
               <CarPrice price={price} setPrice={setPrice} dataObj={dataObj} />
               <ResetSave
@@ -213,6 +217,11 @@ const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  ${(props) =>
+    props.hidden &&
+    css`
+      display: none;
+    `}
 `;
 
 const AddBtn = styled(Button)`

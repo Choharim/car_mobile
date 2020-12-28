@@ -44,7 +44,7 @@ const CarPicture = ({
             <AiOutlinePlus style={{ fontSize: "2rem" }} />
           </UpLoadLabel>
         )}
-        {dataObj.filesArray && dataObj.filesArray[0].url
+        {dataObj.filesArray && dataObj.filesArray[0]
           ? dataObj.filesArray.map((fileObj, index) => (
               <PicturePreview key={index} src={fileObj.url} />
             ))
