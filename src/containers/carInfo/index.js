@@ -8,7 +8,7 @@ import CarPicture from "./_fragments/CarPicture";
 import CarPrice from "./_fragments/CarPrice";
 import ResetSave from "./_fragments/ResetSave";
 import { AiOutlinePlus } from "react-icons/ai";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowUp } from "react-icons/io";
 
 const CarInfoContainer = () => {
   const [isAccident, setIsAccident] = useState("");
@@ -124,7 +124,8 @@ const CarInfoContainer = () => {
           <>
             <ShowInfoContainer>
               <ShowInfoTitle>중고차{index + 1} 정보</ShowInfoTitle>
-              <IoIosArrowDown
+              <ShowHideIcon
+                hidden={show === index && showHide === false}
                 onClick={() => {
                   setShowHide(!showHide);
                   setShow(index);
@@ -210,6 +211,15 @@ const ShowInfoTitle = styled.p`
   margin: 0;
   padding: 15px 0 5px 0;
   font-weight: 600;
+`;
+
+const ShowHideIcon = styled(IoIosArrowUp)`
+  padding: 5px;
+  ${(props) =>
+    props.hidden &&
+    css`
+      transform: rotate(180deg);
+    `};
 `;
 
 const ContentContainer = styled.div`
