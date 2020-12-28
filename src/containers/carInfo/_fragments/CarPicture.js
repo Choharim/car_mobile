@@ -14,7 +14,7 @@ const CarPicture = ({
     const reader = new FileReader();
     const file = event.target.files[0];
     reader.onloadend = () => {
-      setFilesArray(filesArray.concat([{ file, url: reader.result }]));
+      setFilesArray(filesArray.concat({ url: reader.result }));
     };
     reader.readAsDataURL(file);
     setPictureCount(pictureCount + 1);
@@ -44,7 +44,7 @@ const CarPicture = ({
             <AiOutlinePlus style={{ fontSize: "2rem" }} />
           </UpLoadLabel>
         )}
-        {dataObj.filesArray
+        {dataObj.filesArray && dataObj.filesArray[0].url
           ? dataObj.filesArray.map((fileObj, index) => (
               <PicturePreview key={index} src={fileObj.url} />
             ))

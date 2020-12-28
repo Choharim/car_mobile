@@ -43,7 +43,10 @@ const CarInfoContainer = () => {
               isAccident: obj.isAccident ? obj.isAccident : isAccident,
               repairInfo: obj.repairInfo ? obj.repairInfo : repairInfo,
               manufacturer: obj.manufacturer ? obj.manufacturer : manufacturer,
-              filesArray: obj.filesArray !== null ? obj.filesArray : filesArray,
+              filesArray:
+                obj.filesArray && obj.filesArray[0].url
+                  ? obj.filesArray
+                  : filesArray,
               price: obj.price ? obj.price : price,
             }
           : obj
@@ -70,7 +73,9 @@ const CarInfoContainer = () => {
                   ? obj.manufacturer
                   : manufacturer,
                 filesArray:
-                  obj.filesArray !== null ? obj.filesArray : filesArray,
+                  obj.filesArray && obj.filesArray[0].url
+                    ? obj.filesArray
+                    : filesArray,
                 price: obj.price ? obj.price : price,
               }
             : obj
