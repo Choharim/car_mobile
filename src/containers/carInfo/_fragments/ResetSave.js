@@ -37,7 +37,7 @@ const ResetSave = ({
           color={state === "reset"}
           onClick={saveState}
         >
-          초기화
+          삭제
         </ResetBtn>
         <IntermediSaveBtn
           name="save"

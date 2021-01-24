@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Accident from "./_fragments/Accident";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Button from "../../components/button/Button";
 import Repair from "./_fragments/Repair";
 import Manufacturer from "./_fragments/Manufacturer";
@@ -8,7 +8,7 @@ import CarPicture from "./_fragments/CarPicture";
 import CarPrice from "./_fragments/CarPrice";
 import ResetSave from "./_fragments/ResetSave";
 import { AiOutlinePlus } from "react-icons/ai";
-import { IoIosArrowUp } from "react-icons/io";
+import ToggleBtn from "../../components/ToggleBtn";
 
 const CarInfoContainer = () => {
   const [isAccident, setIsAccident] = useState("");
@@ -20,8 +20,6 @@ const CarInfoContainer = () => {
   const [state, setState] = useState("");
   const [saveTime, setSaveTime] = useState("");
   const [dataArray, setDataArray] = useState([{}]);
-  const [showHide, setShowHide] = useState(true);
-  const [show, setShow] = useState(0);
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("tempSave_carInfo"))) {
@@ -122,17 +120,9 @@ const CarInfoContainer = () => {
       {dataArray.map((dataObj, index) => {
         return (
           <>
-            <ShowInfoContainer>
-              <ShowInfoTitle>중고차{index + 1} 정보</ShowInfoTitle>
-              <ShowHideIcon
-                hidden={show === index && showHide === false}
-                onClick={() => {
-                  setShowHide(!showHide);
-                  setShow(index);
-                }}
-              />
-            </ShowInfoContainer>
-            <ContentContainer hidden={show === index && showHide === false}>
+            <ShowInfoTitle>중고차{index + 1} 정보</ShowInfoTitle>
+
+            <ToggleBtn>
               <Accident
                 isAccident={isAccident}
                 setIsAccident={setIsAccident}
@@ -165,7 +155,7 @@ const CarInfoContainer = () => {
                 saveTime={saveTime}
                 setSaveTime={setSaveTime}
               />
-            </ContentContainer>
+            </ToggleBtn>
           </>
         );
       })}
@@ -192,46 +182,18 @@ const InfoContainer = styled.div`
 `;
 
 const InfoTitle = styled.p`
+  margin: 10px 0;
   font-size: 1.6rem;
   font-weight: 600;
-  margin: 10px 0;
   color: #315676;
 `;
 
-const ShowInfoContainer = styled.div`
+const ShowInfoTitle = styled.p`
   width: 95%;
   margin: 10px 0;
   border-bottom: 1px solid #b8b8b8;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const ShowInfoTitle = styled.p`
-  margin: 0;
   padding: 15px 0 5px 0;
   font-weight: 600;
-`;
-
-const ShowHideIcon = styled(IoIosArrowUp)`
-  padding: 5px;
-  ${(props) =>
-    props.hidden &&
-    css`
-      transform: rotate(180deg);
-    `};
-`;
-
-const ContentContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  ${(props) =>
-    props.hidden &&
-    css`
-      display: none;
-    `}
 `;
 
 const AddBtn = styled(Button)`
@@ -252,6 +214,4 @@ const SaveBtn = styled(Button)`
   height: 70px;
   margin-top: 20px;
   font-size: 1.4rem;
-  position: relative;
-  bottom: 0;
 `;
